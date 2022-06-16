@@ -37,21 +37,20 @@ export default function Player(){
         return avatar
     }
 
-    async function removeItem (item) {
+    async function removeItem () {
 
-       const indexItems = items.filter(it => it === item)
-       for (let index = 1; index <= indexItems.length; index++) {
-            printItemRemoved(item, index, indexItems.length )
+       for (let index = 1; index <= items.length; index++) {
+            printItemRemoved(index, items.length, items[index] )
        }
-       items = items.filter(it => it !== item)
+       items = []
        return
     }
      
-     function printItemRemoved (item, iteration, cant ) {
+     function printItemRemoved (iteration, cant, item ) {
         setTimeout(() => {
               console.log(`ITEMS REMOVIDOS: ${item}`, iteration,'/', cant);
               return null
-          },iteration*timeItemConsum[item])
+          },iteration*1000)
      }
 
     async function move(input, maze){
@@ -69,11 +68,8 @@ export default function Player(){
                         addItem(maze[result][positionx])
                         maze[result][positionx] = '   '
                     }
-                    if (maze[positiony][result] === '[*]'){
-                        await removeItem('(*)')
-                    }
-                    if (maze[positiony][result] === '[+]'){
-                        await removeItem('(+)')
+                    if (maze[positiony][result] === '[*]' || maze[positiony][result] === '[+]'){
+                        await removeItem()
                     }
                     setPosition (positionx, result)
                  }
@@ -88,11 +84,8 @@ export default function Player(){
                         addItem(maze[result][positionx])
                         maze[result][positionx] = '   '
                     }
-                    if (maze[positiony][result] === '[*]'){
-                        await  removeItem('(*)')
-                    }
-                    if (maze[positiony][result] === '[+]'){
-                        await removeItem('(+)')
+                    if (maze[positiony][result] === '[*]' || maze[positiony][result] === '[+]'){
+                        await  removeItem()
                     }
                     setPosition (positionx,result)
                 }
@@ -107,11 +100,8 @@ export default function Player(){
                         addItem(maze[positiony][result])
                         maze[positiony][result] = '   '
                     }
-                    if (maze[positiony][result] === '[*]'){
-                        await removeItem('(*)')
-                    }
-                    if (maze[positiony][result] === '[+]'){
-                        await removeItem('(+)')
+                    if (maze[positiony][result] === '[*]' || maze[positiony][result] === '[+]'){
+                        await removeItem()
                     }
                     setPosition (result, positiony)
                 }
@@ -126,11 +116,8 @@ export default function Player(){
                         addItem(maze[positiony][result])
                         maze[positiony][result] = '   '
                     }
-                    if (maze[positiony][result] === '[*]'){
-                        await removeItem('(*)')
-                    }
-                    if (maze[positiony][result] === '[+]'){
-                        await removeItem('(+)')
+                    if (maze[positiony][result] === '[*]' || maze[positiony][result] === '[+]'){
+                        await removeItem()
                     }
                     setPosition (result, positiony)
                 } 

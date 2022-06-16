@@ -1,8 +1,6 @@
 # Laberinto Integracion Colas
-RUN GAME
-```
-npm run game
-```
+
+
 
 ## Getting started
 
